@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block containt %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sinin</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .form{
+            position: absolute;
+            top: 20%;
+            /* transform: translate(-50%, -50%); */
+            background: white;
+            right: 35%;
+            border-radius: 10px;
+            width: 30%;
+            box-shadow: 10px 10px 15px rgb(0 0 0 / 5%);
+            height: auto;
+        }
+        .input {
+                /* padding-left: 25%; */
+                display: flex;
+                padding: 0% 20%;
+                flex-direction: column;
+                /* width: 50%; */
+                }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <h3>Signin</h3>
+        <br>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show message" role="alert">
+            <strong style="color: red;">Message:</strong> {{ message }}
+        </div>
+        <br>
+        {% endfor %}
+        <form action="/signin/" method="post">
+            {% csrf_token %}
+            <div class="input">
+                <label for="" >Username</label>
+                <input type="text"  id="username" name="username" placeholder="username" Required>
+            </div>
+            <div class="input">
+                <label for="">Password</label>
+                <input type="password"  id="password1" name="password1" placeholder=" Password" Required>
+
+            </div>
+            <br>
+            <br>
+            <div class="submit">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <div class="sinup foot-style">
+            Not a member?
+            <a href="/sinup/">Sinup here</a>
+        </div>
+        <br>
+        <br>
+    </div>
+</body>
+</html>
+{% endblock %}

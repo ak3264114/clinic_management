@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block containt %}
+<head>
+      <style>
+        .style{
+          /* transform: translate(-50%, -50%); */
+          background: white;
+          border-radius: 10px;
+          width: 98%;
+          margin: 2% 1%;
+          box-shadow: 10px 10px 15px rgb(0 0 0 / 5%);
+          height: auto;
+        }
+        .add-details{
+          padding: 10px;
+          margin: 10px;
+          border: 3px solid black;
+          border-radius: 20px;
+          background-color: aqua;
+          font-size: 20px;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      </style>
+      <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <title>Signup</title>
+</head>
+<br>
+<img src="{{data.image.url}}"  alt="image"  onerror="this.src='../static/dafault.png'" style="width: 200px;">
+<hr>
+<h1>Name: {{data.first_name}} {{data.last_name}}</h1>
+{% if user.is_staff is True %}
+<h1>Qualification: {{data.qualification_higest}}</h1>
+<h1>Specilization: {{data.specilization}}</h1>
+{% endif %}
+<h1>About: {{data.about}}</h1>
+<h1>Phone No. : {{data.phone_no}}</h1>
+<h1>Address Line 1: {{data.add_line_1}}</h1>
+<h1>City: {{data.add_city}}</h1>
+<h1>State: {{data.add_state}}</h1>
+<h1>Pincode: {{data.add_Pincode}}</h1>
+<hr>
+<br>
+<a class="edit-details" href="/edit-details/">Edit Details</a>
+<br>
+<br>
+{% endblock %}
+

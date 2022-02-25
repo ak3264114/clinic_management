@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background : linear-gradient(100deg,#29b93c, #91c43e);
+}
+.space{
+    align-items: center;
+    text-align: center;
+    left: 30%;
+}
+/* .form{
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+    height: auto;
+    margin-bottom: 4%;
+} */
+.form h3{
+    text-align: center;
+    padding: 20px;
+}
+.form form{
+    align-items: center;
+    box-sizing: border-box;
+}
+.input{
+    padding: 0% 10%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.input {
+    /* padding-left: 25%; */
+    display: flex;
+    /* padding: 0% 10%; */
+    flex-direction: column;
+    /* width: 50%; */
+}
+.input input{
+    height: 40px;
+    width: 100%;
+    font-size: 20px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    text-align: center;
+    background: none;
+    outline: none;
+}
+.input textarea{
+    /* height: 40px; */
+    width: 100%;
+    font-size: 20px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    text-align: auto;
+    background: none;
+    outline: none;
+}
+.input select{
+    /* height: 40px; */
+    width: 100%;
+    font-size: 20px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    text-align: auto;
+    background: none;
+    outline: none;
+}
+.input label{
+    padding-bottom: 5px;
+    padding-top: 15px;
+    font-size: 20px;
+}
+.submit{
+    align-items: center;
+    width: 200px;
+    margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 3px solid #2691d9;
+    border-radius: 100px;
+    background-color: #2691d9;
+}
+.submit input{
+    height: 40px;
+    width: 100%;
+    font-size: 20px;
+    border: none;
+    text-align: center;
+    background: none;
+    outline: none;
+}
+
+.foot-style{
+    text-align: center;
+    font-size: 20px;
+    margin: auto;
+
+}
+.message{
+    margin-left: 25%;
+    font-size: 20px;
+}

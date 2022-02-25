@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block containt %}
+<head>
+    <style>
+        .body{
+            background: linear-gradient(130deg, blue  , green);
+            height: auto;
+
+        }
+        .body-2{
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<div class="container-fluid p-0 body">
+    <h1 style="text-align: center; color: white;">Welcome {% if user.is_staff %} 
+        Dr.  {{user.get_full_name}}
+        {% endif %} 
+        {% if user.is_authenticated and user.is_staff is False %} 
+        {{user.get_full_name}}
+        {% endif %}!!</h1>
+    <div class="row g-0 card-row body-2">
+        {% for doctor in doctors %}
+        <div class="card card-box" style="width: 20rem; margin: 20px ;">
+            <img class="card-img-top" src="{{doctor.image.url}}" style="height: 20rem;" >
+            <div class="card-body">
+              <h5 class="card-title">Dr. {{doctor.first_name}} {{doctor.last_name}}</h5>
+              <p class="card-text">About: {{doctor.about}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Specilization: {{doctor.specilization}}</li>
+              <li class="list-group-item">Qualification: {{doctor.qualification_higest}}</li>
+            </ul>
+            <div class="card-body">
+              <a href="" class="card-link">Book appoitnment</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

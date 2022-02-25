@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block containt %}
+<head>
+      <style>
+        .form{
+          /* transform: translate(-50%, -50%); */
+          background: white;
+          border-radius: 10px;
+          width: 98%;
+          margin: 2% 1%;
+          box-shadow: 10px 10px 15px rgb(0 0 0 / 5%);
+          height: auto;
+        }
+      </style>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Signup</title>
+</head>
+<div class="space">
+  <div class="form">
+    <h3>Profile</h3>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong style="color: red;">Message:</strong> {{ message }}
+    </div>
+    {% endfor %}
+   <form method="post" enctype="multipart/form-data" action="/add-details/">
+        {% csrf_token %}
+        <div class="address row mb-4">
+            <div class="input col">
+                <div class="form-outline">
+                    <label for="username">Profile picture</label>
+                    <input type="file"  id="image" name="image" value="image" accept="image/*">
+                </div>
+            </div>
+            <div class="input col">
+                <div class="form-outline">
+                    <label for="phone_no">Phone Number</label>
+                    <input type="number" id="phone_no" name="phone_no" placeholder="Enter Your Phone Number" required>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="input col">
+                <div class="form-outline">
+                    {%if user.is_staff%}
+                    <label for="phone_no">About</label>
+                    <textarea name="about" id="about" cols="6" rows="3" placeholder="About"></textarea>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        <h4>Address</h4>
+        <div class="address row mb-4">
+            <div class="input col">
+                <div class="form-outline">
+                    <label for="add_line_1">Locality</label>
+                    <input type="text" id="add_line_1" name="add_line_1" placeholder="Enter Your Locality" >
+                </div>
+            </div>
+            <div class="input col">
+                <div class="form-outline">
+                    <label for="add_city">City</label>
+                    <input type="text" id="add_city" name="add_city" placeholder="Enter Your City Name" >
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="input col">
+                <div class="form-outline">
+                    <label for="add_state">State</label>
+                    <input type="text" id="add_state" name="add_state" placeholder="Enter Your State Name" >
+                </div>
+            </div>
+            <div class="input col">
+                <div class="form-outline">
+                    <label for="add_Pincode">Pincode</label>
+                    <input type="number" id="add_Pincode" name="add_Pincode" placeholder="Enter Your Pincode" required>
+                </div>
+            </div>
+        </div>
+        {%if user.is_staff%}
+        <div class="input">
+            <label for="qualification_higest">Higest Qualification</label>
+            <input type="text" id="qualification_higest" name="qualification_higest" placeholder="Enter Your Higest Qualification" >
+        </div>
+        <div class="input">
+            <label for="specilization">Specilization</label>
+            <input type="text" id="specilization" name="specilization" placeholder="Enter Your Specilization">
+        </div>
+        {%endif%}
+        <br>
+        <div class="submit">
+            <input type="submit" value="Sinup">
+        </div>
+    </form>
+    <br>
+    <hr>
+</div>
+</div>
+{% endblock %}
