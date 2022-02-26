@@ -7,9 +7,25 @@ from django.contrib.auth import logout ,login ,authenticate
 
 from hospital.models import Doctor, Patient
 # Create your views here.
-def home(request):    
-    doctors = Doctor.objects.all
-    return render(request, 'index.html', {'doctors': doctors, 'doctors': doctors})      
+def home(request): 
+    if request.user.is_staff :
+        # Doctor.objects.filter(user = request.user).exists():
+        data = Doctor.objects.get(user = request.user)
+        image = data.image.url
+        doctors = Doctor.objects.all
+        return render(request, 'index.html', {'image': image ,'doctors': doctors })
+        # return redirect('add_details')
+        # user_id = request.user.id
+        # data = Doctor.objects.get(pk=user_id)
+        # return render(request, 'profile.html', {'data': data})
+    elif request.user.is_authenticated:
+        data = Patient.objects.get(user = request.user)
+        image = data.image.url
+        doctors = Doctor.objects.all
+        return render(request, 'index.html', {'image': image ,'doctors': doctors })
+    else:
+        doctors = Doctor.objects.all
+        return render(request, 'index.html', { 'doctors': doctors})      
 
 def signup(request):
     if request.method == "POST":
@@ -106,7 +122,7 @@ def profile(request):
         # data = Doctor.objects.get(pk=user_id)
         # return render(request, 'profile.html', {'data': data})
     elif request.user.is_authenticated:
-        user_id = request.user.id
+        # user_id = request.user.id
         # try:
         #     data = Patient.objects.get(id=user_id).first()
         #     return render(request, 'profile.html', {'data': data})
