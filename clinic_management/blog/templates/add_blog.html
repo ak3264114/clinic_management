@@ -1,0 +1,51 @@
+{% extends 'blog_base.html' %}
+{% block containt %}
+<style>
+    .form form{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        margin: 5px 15%;
+    }
+    .form form label{
+        font-weight: bold;
+        font-size: 22px;
+    }
+    .bottom-right {
+    flex: 50%;
+    text-align: right;
+    }
+</style>
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong style="color: red;">Message:</strong> {{ message }}
+</div>
+{% endfor %}
+
+<div class="form">
+    <form action="/blog/add-blog/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br>
+        <label for="blog_title">Title of the blog</label>
+        <input type="text" name="blog_title" value="{{content.blog_title}}" required><br>
+        <label for="blog_image">Image</label>
+        <input type="file" name="blog_image"  value="{{content.blog_image}}" accept="image/*"><br>
+        <label for="blog_category">Category</label>
+        <select  name="blog_category" id="blog_category">
+            {% for category in categorys %}
+            <option value="{{category.id}}"  value="{{content.blog_category}}" >{{category}}</option>
+            {% endfor %}
+        </select><br>
+        <label for="blog_summary">Summary</label>
+        <textarea name="blog_summary" id="blog_summary"  value="{{content.blog_summary}}"  cols="40" rows="3"></textarea><br>
+        <label for="blog_content">Content</label>
+        <textarea name="blog_content" id="blog_content"  value="{{content.blog_content}}" cols="60" rows="10"></textarea><br>
+        <div class="bottom-right">
+            <button type="submit" name="draft_blog">Draft</button>
+            <button type="submit" name="post_blog">Post</button>
+        </div>  
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'blog_base.html' %}
+{% block containt %}
+<style>
+    .blog-body{
+        margin: 0% 20%;
+        background-color: aqua;
+        padding: 3%;
+    }
+    .font-set{
+        font-size: 20px;
+    }
+    body{
+        background-color: #e4e9ee;
+    }
+
+</style>
+<div class="blog-body">
+    <h1>{{content.blog_title}}</h1>
+    <p>{{content.blog_views}} Views</p>
+    <br>
+    <div class="set-width">
+        <img src="{{content.blog_image.url}}" alt="" style="width: 60%;">
+    </div>
+    <br>
+    <h1>Summary :</h1>
+    <div class="font-set">
+        <p>{{content.blog_summary}}</p>
+    </div>
+    <br>
+    <h3>Content :</h3>
+    <div class="font-set">
+        <p>{{content.blog_content}}</p>
+    </div>
+</div>
+
+{% endblock %}

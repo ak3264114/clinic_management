@@ -1,9 +1,9 @@
-from asyncio.windows_events import NULL
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import logout ,login ,authenticate
+from blog.models import Blog
 
 from hospital.models import Doctor, Patient
 # Create your views here.
@@ -90,7 +90,7 @@ def signin(request):
         
         if user is not None:
             login(request, user)
-            return redirect ('home')
+            return redirect ('profile')
         # elif User.is_authenticated:
         #     return HttpResponse('You have already sign in')         
         else:
@@ -114,8 +114,14 @@ def doctors_dashboard(request):
 def profile(request):
     if request.user.is_staff :
         if  Doctor.objects.filter(user = request.user).exists():
-            data = Doctor.objects.get(user = request.user)
-            return render(request, 'profile.html', {'data': data})
+            if Blog.objects.filter(blog_author = request.user).exists():
+                data = Doctor.objects.get(user = request.user)
+                contents = Blog.objects.filter(blog_author = request.user)
+                return render(request, 'profile.html', {'data': data , 'contents':contents})
+            else:
+                data = Doctor.objects.get(user = request.user)
+                contents = Blog.objects.filter(blog_author = request.user)
+                return render(request, 'profile.html', {'data': data})
         else:
             return redirect('add_details')
         # user_id = request.user.id

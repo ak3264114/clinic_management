@@ -1,0 +1,60 @@
+{% extends 'blog_base.html' %}
+{% block containt %}
+<head>
+    <style>
+        body{
+            background: linear-gradient(130deg, blue  , green);
+            height: auto;
+
+        }
+        .body-2{
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<div class="container-fluid p-0 body">
+    <br>
+    <h1 style="text-align: center; color: white;">Welcome to Our Blog {% if user.is_staff %} 
+        Dr.  {{user.get_full_name}}
+        {% endif %} 
+        {% if user.is_authenticated and user.is_staff is False %} 
+        {{user.get_full_name}}
+        {% endif %}!!</h1>
+        <br>
+    <div class="row g-0 card-row body-2">
+        {%for content in contents%}
+        <div class="card card-box" style="width: 25rem; margin: 20px ;height: 39rem;">
+            <img class="card-img-top" src="{{content.blog_image.url}}" style="height: 20rem;" >
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><h4 style="color: blue;" class="card-title">{{content.blog_title}}</h4><small>{{content.blog_views}} Views</small></li>
+              <li class="list-group-item"><p id="{{content.id}}" class="card-text">{{content.blog_summary}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eum voluptatibus</p></li>
+              <li class="list-group-item">Catogory: {{content.blog_category}}</li>
+              <li class="list-group-item"><a href="/blog/view-blog/{{content.id}}" class="btn btn-primary">Read More</a></li>
+            </ul>
+            <!-- <div class="card-body">
+              <a href="" class="card-link">Book appoitnment</a>
+            </div> -->
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+{%for content in contents%}
+<script>
+        var words = $('#{{content.id}}').text().split(" ");
+        // console.log(words);
+
+        if (words.length>15) {
+            // words.slice(0,15)
+            var string_words = words.slice(0,15)
+            var new_word = string_words.join(" ") + "..."
+            $('#{{content.id}}').html(new_word)
+
+        }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+{% endfor %}
+{%endblock%}

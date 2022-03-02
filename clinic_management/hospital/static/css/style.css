@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    background : linear-gradient(100deg,#29b93c, #91c43e);
+    background: linear-gradient(130deg, blue  , green);
 }
 .space{
     align-items: center;

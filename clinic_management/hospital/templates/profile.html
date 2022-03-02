@@ -40,10 +40,45 @@
 <h1>City: {{data.add_city}}</h1>
 <h1>State: {{data.add_state}}</h1>
 <h1>Pincode: {{data.add_Pincode}}</h1>
-<hr>
-<br>
-<a class="edit-details" href="/edit-details/">Edit Details</a>
-<br>
-<br>
-{% endblock %}
+<!-- <hr> -->
+<!-- <br> -->
+<!-- <a class="edit-details" href="/edit-details/">Edit Details</a> -->
+<!-- <br> -->
+<hr style="color: black;border: 3px solid black;">
+<h1 style="text-align: center; color: aqua;">Your Blogs</h1>
+<hr style="color: black;border: 3px solid black;">
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong style="color: red;">Message:</strong> {{ message }}
+</div>
+{% endfor %}
 
+
+
+
+{%if contents%}
+<div class="row g-0 card-row body-2">
+  {%for content in contents%}
+  <div class="card card-box" style="width: 25rem; margin: 20px;">
+      <img class="card-img-top" src="{{content.blog_image.url}}" style="height: 20rem;" >
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h4 style="color: blue;" class="card-title">{{content.blog_title}}</h4><small>{{content.blog_views}} Views</small></li>
+        <li class="list-group-item"><p id="{{content.id}}" class="card-text">{{content.blog_summary}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eum voluptatibus</p></li>
+        <li class="list-group-item">Catogory: {{content.blog_category}}</li>
+        <li class="list-group-item"><a href="/blog/view-blog/{{content.id}}" class="btn btn-primary">Read More</a></li>
+        {% if content.blog_is_post is True %}
+        <li class="list-group-item"><h3>Status : Post</h3></li>
+        <li class="list-group-item"><a class="btn btn-primary" href="/blog/draft-blog/{{content.id}}">Make Draft</a></li>
+        {% endif %}
+        {% if content.blog_is_post is False %}
+        <li class="list-group-item"><h3>Status : Draft</h3></li>
+        <li class="list-group-item"><a class="btn btn-primary" href="/blog/post-blog/{{content.id}}">Post</a></li>
+        {% endif %}
+      </ul>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<h4 style="text-align:center; margin-bottom: 100px;">you haven't  uploaded any blog</h4>
+{% endif %}
+{% endblock %}
