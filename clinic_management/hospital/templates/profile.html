@@ -44,6 +44,8 @@
 <!-- <br> -->
 <!-- <a class="edit-details" href="/edit-details/">Edit Details</a> -->
 <!-- <br> -->
+
+{% if user.is_staff%}
 <hr style="color: black;border: 3px solid black;">
 <h1 style="text-align: center; color: aqua;">Your Blogs</h1>
 <hr style="color: black;border: 3px solid black;">
@@ -52,8 +54,6 @@
     <strong style="color: red;">Message:</strong> {{ message }}
 </div>
 {% endfor %}
-
-
 
 
 {%if contents%}
@@ -80,5 +80,6 @@
 </div>
 {% else %}
 <h4 style="text-align:center; margin-bottom: 100px;">you haven't  uploaded any blog</h4>
+{% endif %}
 {% endif %}
 {% endblock %}

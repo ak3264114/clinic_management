@@ -11,18 +11,16 @@ def home(request):
     if request.user.is_staff :
         # Doctor.objects.filter(user = request.user).exists():
         data = Doctor.objects.get(user = request.user)
-        image = data.image.url
         doctors = Doctor.objects.all
-        return render(request, 'index.html', {'image': image ,'doctors': doctors })
+        return render(request, 'index.html', {'data': data ,'doctors': doctors })
         # return redirect('add_details')
         # user_id = request.user.id
         # data = Doctor.objects.get(pk=user_id)
         # return render(request, 'profile.html', {'data': data})
     elif request.user.is_authenticated:
         data = Patient.objects.get(user = request.user)
-        image = data.image.url
         doctors = Doctor.objects.all
-        return render(request, 'index.html', {'image': image ,'doctors': doctors })
+        return render(request, 'index.html', {'data': data,'doctors': doctors })
     else:
         doctors = Doctor.objects.all
         return render(request, 'index.html', { 'doctors': doctors})      
